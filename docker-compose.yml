@@ -1,0 +1,21 @@
+version: "3"
+services:
+  nginx:
+    build:
+      context: ./backend/nginx
+    ports:
+      - "80:80"
+
+  web1:
+    build:
+      context: ./backend/fastapi
+    expose:
+      - "8000"
+    command: uvicorn main:app --host web1 --port 8000
+
+  web2:
+    build:
+      context: ./backend/fastapi
+    expose:
+      - "8001"
+    command: uvicorn main:app --host web2 --port 8001
